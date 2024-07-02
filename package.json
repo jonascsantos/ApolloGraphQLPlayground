@@ -6,17 +6,20 @@
   "type": "module",
   "scripts": {
     "compile": "tsc",
-    "start": "npm run compile && node ./dist/index.js"
+    "start": "npm run compile && node ./dist/index.js",
+    "dev:simple": "nodemon --exec node --loader ts-node/esm src/index.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@apollo/server": "^4.10.4",
-    "graphql": "^16.9.0"
+    "graphql": "^16.9.0",
+    "nodemon": "^3.1.4"
   },
   "devDependencies": {
     "@types/node": "^20.14.9",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.5.3"
   }
 }

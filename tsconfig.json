@@ -3,10 +3,15 @@
     "rootDirs": ["src"],
     "outDir": "dist",
     "lib": ["es2020"],
-    "target": "es2020",
+    "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
     "esModuleInterop": true,
-    "types": ["node"]
-  }
+    "types": ["node"],
+  },
+  "include": [
+    "src/**/*"
+  ]
 }
