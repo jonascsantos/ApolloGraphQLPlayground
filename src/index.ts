@@ -1,17 +1,27 @@
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
+import { randomUUID } from 'node:crypto';
 
 const typeDefs = `#graphql
+  type User {
+    id: String!
+    name: String!
+  }
 	type Query {
-		users: [String!]!
+		users: [User!]!
 	}
 
 	type Mutation {
-		createUser(name: String!): String!
+		createUser(name: String!): User!
 	}
 `;
 
-const users: string[] = [];
+interface User {
+  id: string,
+  name: string
+}
+
+const users: User[] = [];
 
 const resolvers = {
 	Query: {
@@ -21,10 +31,15 @@ const resolvers = {
 	},
 
 	Mutation: {
-		createUser: (parent, args, ctx) => {
-      users.push(args.name);
+		createUser: (_, args) => {
+      const user = {
+        id: randomUUID(),
+        name: args.name
+      };
 
-      return args.name
+      users.push(user);
+
+      return user
     }
 	}
 };
